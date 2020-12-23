@@ -1,0 +1,44 @@
+baseURL = "https://www.example.com"
+languageCode = "en-us"
+title = "epsilon dumblog"
+theme = "npq-hugo"
+pygmentsUseClasses=true
+
+[params]
+  author = "epsilon"
+  description = "Math, Machine Learning and various ramblings"
+  keywords = "blog math deep learning"
+  useAvatar = true
+  microBlogSection = "posts"
+  displayMicroBlog = false 
+  displayRecent = true
+  displayHomeContent = false
+  recentMax = 4
+  formspreeID = "yourformspreeID"
+
+[menu]
+  [[menu.main]]
+    name = "about me"
+    pre = "<i class=\"fas fa-user-circle fa-sm\"></i>"
+    url = "/blog/intro/"
+    weight = -9 
+  [[menu.main]]
+    name = "blog"
+    pre = "<i class=\"fas fa-keyboard fa-ms\"></i>"
+    url = "/blog/"
+    weight = -8
+  [[menu.main]]
+    name = "tags"
+    pre = "<i class=\"fas fa-tags fa-ms\"></i>"
+    url = "/tags"
+    weight = -7 
+  [[menu.main]]
+    name = "github"
+    pre = "<i class=\"fab fa-github fa-ms\"></i>"
+    url = "https://github.com/epsln"
+    weight = -6 
+  [[menu.main]]
+    name = "RSS"
+    pre = "<i class=\"fas fa-rss fa-ms\"></i>"
+    url = "/index.xml"
+    weight = -4 
