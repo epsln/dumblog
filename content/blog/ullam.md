@@ -1,5 +1,5 @@
 ---
-title: "Ullam Spiral"
+title: "Ulam Spiral"
 date: 2020-12-28T18:38:23+01:00
 draft: false 
 tags: [processing, primes, math]
@@ -7,7 +7,7 @@ tags: [processing, primes, math]
 
 This post is the first part of an attempt at explaining most of the small animations I have done in the past few years. 
 
-The Ullam Spiral is fairly straight forward: by arranging the integers in a spiral, and only marking the primes, you obtain strange, and frankly cool looking patterns.
+The Ulam Spiral is fairly straight forward: by arranging the integers in a spiral, and only marking the primes, you obtain strange, and frankly cool looking patterns.
 
 Creating this sort of image is very simple. I simply created a basic loop that construct the spiral, which follows the following pattern: ULDDRRRUUUULLLL..., assigning an integer to each step and checking if it was prime. 
 
