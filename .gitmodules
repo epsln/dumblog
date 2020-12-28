@@ -1,3 +1,7 @@
 [submodule "themes/npq-hugo"]
 	path = themes/npq-hugo
 	url = https://github.com/ahmedsaadxyzz/npq-hugo
+[submodule "public"]
+	path = public
+	url = https://github.com/epsln/epsln.github.io.git
+	branch = main
