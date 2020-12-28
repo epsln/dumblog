@@ -1,7 +1,8 @@
 ---
 title: "Ullam Spiral"
 date: 2020-12-28T18:38:23+01:00
-draft: true
+draft: false 
+tags: [processing, primes, math]
 ---
 
 This post is the first part of an attempt at explaining most of the small animations I have done in the past few years. 
