@@ -1,8 +1,8 @@
 ---
-title: "GaussInts"
+title: "Gaussians Primes"
 date: 2020-12-29T18:54:18+01:00
 tags: [processing, primes, math]
-draft: true
+draft: false 
 ---
 
 On this second episode of "what has Epsilon done for the past years", we're gonna talk about... Prime Numbers. [Code is available here](https://github.com/epsln/processingSketches/tree/main/gaussianIntegers).
