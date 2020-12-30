@@ -14,3 +14,5 @@ The primes does have this capacity to create some interesting looking things, I'
 We can see some primes lining up in lines, in crosses, and making all sort of weird patterns. There's also radial symmetry going on in there. However, those patterns again disapear in some kind of noise all higher level of zoom. At the beginning it kinda looks like a weird cellular automata, doesn't it ? 
 
 ![High Level Zoom](/gaussInts/dezoomed.jpg)
+
+I promise, the next one isn't going to be about primes. Maybe about complexes (complices) though.
