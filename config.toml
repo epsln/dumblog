@@ -1,4 +1,4 @@
-baseURL = "epsln.github.io"
+baseURL = "/"
 languageCode = "en-us"
 title = "epsilon dumblog"
 theme = "npq-hugo"
@@ -13,8 +13,12 @@ pygmentsUseClasses=true
   displayMicroBlog = false 
   displayRecent = true
   displayHomeContent = false
-  recentMax = 4
+  recentMax = 6
   formspreeID = "yourformspreeID"
+
+[taxonomies]
+   tag = "tags"
+   category = "categories"
 
 [menu]
   [[menu.main]]
