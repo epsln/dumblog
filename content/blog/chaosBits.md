@@ -2,7 +2,7 @@
 title: "Chaos in Bits"
 date: 2021-01-07T15:01:47+01:00
 tags: [processing]
-draft: true
+draft: false 
 ---
 
 One of the things I try a lot is to make cool looking images with the least effort on my part. The easiest way to do that is to let the computer do my work. At least, that's the theory; in practice I spend a lot of time tweaking the various functions and tidbits that make the final product. Maybe some day I'll just paint the individual pixel myself, it'll probably be a bit less trouble. [As usual, the code is available here](https://github.com/epsln/processingSketches/tree/main/chaosBits)
