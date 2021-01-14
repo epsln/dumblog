@@ -11,9 +11,9 @@ pygmentsUseClasses=true
   useAvatar = true
   microBlogSection = "posts"
   displayMicroBlog = false 
-  displayRecent = true
-  displayHomeContent = false
-  recentMax = 6
+  displayRecent = true 
+  displayHomeContent = true 
+  recentMax = 8
   formspreeID = "yourformspreeID"
 
 [taxonomies]
