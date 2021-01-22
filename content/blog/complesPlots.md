@@ -1,7 +1,7 @@
 ---
 title: "Complex Plots of Fixed Points of Iterated Polynomials"
 date: 2021-01-20T16:21:39+01:00
-draft: true 
+draft: false 
 ---
 
 A fairly long title for this one, but I can't always be Victor Hugo when it comes to posts titles. We're gonna talk about complex dynamics in this one, so stay strapped. 
