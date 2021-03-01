@@ -1,7 +1,7 @@
 ---
 title: "Indra's Pearl, or Quasifuschian Two Generator Groups explained by someone completely out of his depths"
 date: 2021-02-18T16:47:37+01:00
-draft: true
+draft: false 
 tags: [math, indras pearl, fractals, klein, C]
 ---
 
