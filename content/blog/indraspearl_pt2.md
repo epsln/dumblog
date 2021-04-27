@@ -1,7 +1,7 @@
 ---
 title: "Indras Pearl II: Generating the Generators"
 date: 2021-03-01T17:05:25+01:00
-draft: true
+draft: false 
 
 tags: [math, indras pearl, fractals, klein, C]
 ---
