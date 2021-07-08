@@ -2,6 +2,7 @@
 title: "Indras Pearl III : Searching for a place to stop"
 date: 2021-05-04T00:23:07+02:00
 draft: true
+tags: [math, indras pearl, fractals, klein, C]
 ---
 
 In the past article we've seen an overview of what kind of objects we were talking about, and how to create generators that would be interesting to explore. In this part, we'll talk about the bread and butter of Indra's Pearl, namely the Depth First Exploration Algorithm, or DFS. For the sake of simplicity, i'll refer to the inverse of a generator using the uppercase version of it's associated letter, so the inverse of a is A, and the inverse of b is B. 
@@ -15,13 +16,30 @@ So why the DFS you ask ? Exploring Breadth First seems simple and adequate, why 
 ## What's Depth First Search anyway ?
 We've established that we're searching along a tree. Depth First means that we first want to go _deep_ rather than _wide_. We'll take a branch, go as deep as we need, usually until we hit an exit condition be it a maximum depth level or something else, then come back one level, chose the next branch and repeat. Once we have explored all branches of a certain node, we go back one level, chose the next branch and again we go. 
 
-Here, we always chose the next branch using the same criterion. We'll call it "turning right", even though we aren't on a road. We need to chose carefully how we chose the next direction. If we want to draw a lines between close limit points, by for example joining the last explored point and the current, we need to make sure that the points we are exploring will stay close together.  
+Here, we always chose the next branch using the same criterion. We'll call it "turning right", even though we aren't on a road. We need to chose carefully how we chose the next direction. If we want to draw a lines between close limit points, by for example joining the last explored point and the current, we need to make sure that the points we are exploring will stay close together. We also need to know what left or right even mean. After all it's just letters in a word they could be in any order.  
 
 ## Cyclic Permutations
-The order in which we chose our branch to explore matters. 
+The order in which we chose our branch to explore matters. Starting from a word \\(W\\) we _could_ chose any other generator to compose with, maybe even at random. However, this could pose problem afterwards, since words that would be explored right after another wouldn't be close. Also, we might chose an inverse by mistake, and make the code slightly messier by implemented checks and balance. We don't want to check, we want to charge head on!
+
+We formalize the notion of moving left and right in the word tree using the cyclic permutations of the generators. A cyclic permutation (in our case, it is actually _slightly_ more general than this) is a particular kind of permutation, where the symbols of a string are shifted nth place to the right, and the nth last symbol are added at the beginning of the string. For example, under a cyclic permutation, we have:
+$$
+	uvwx...yz \rightarrow zuvw..y
+$$
+
+![Yes, its just like reading from a clock](/indras3/cyclicPerm.png)
+
+You can also think of it as placing each of the symbol on a circle: the string will have no beginning or end, and a cyclic permutation would simply choosing another symbol to start reading from.
+
+Anyway. We want to explore our tree in a cyclic order of \\(a, B, A, b\\): we are interested in all four cyclic permutations \\(B, A, b, a\\),\\(A, b, a, B\\),\\(b, a, B, A\\),\\(a, B, A, b\\). We can now think of turning left and right as choosing a different direction in our cyclic order. 
+
+Say you have a word \\(wB\\), meaning that it ends in B, and that the last generator you used is B, meaning that the inverse of this path is \\(b\\). Since \\(b, a, B, A\\) is a cyclic permutation of \\(a, B, A, b\\), we know that the forward direction, in inverse order must be \\(a, B, A\\). 
+
+Now, if we move always right, we would chose the A branch. After choosing, the \\(A\\) branch we would chose the next cyclic permutation, or \\(B, A, b, A\\), meaning that our next most right hand generator would be \\(B\\). If we must go up a level, meaning that we can't chose \\(B\\) we chose the next rightmost turn possible, or \\(A\\). If we can't again, we chose \\(b\\), and if we have exhausted all of our options, we must go back a level and try the next rightmost possible turn.
+
+This cyclic permutation bodes very well with our beloved modulo operator. We even have placed the generator in such a way that the index of a generator and its inverse is simply \\(i\_{\bar{gen}} = i\_{gen} + 2 % 4\\). What a coincidence. All of this text just means something simple: given an index \\(i\\) the next generators are just given by \\(i - 1, i, i + 1\\) modulo 4. 
 
 ## What are we plotting ?
-With the BFS algorithm, what we essentially did was applying a Mobius transform on each of the 4 circles of the initial Shottky array. As it turns out, we don't need to do apply this transform to a specific circle. What we could do, is simply chose a seed point \\(P\\) in the initial Shottky circles, and apply the transform not to the entire circle, but simply to this point, saving us some computations. This also means that if we chose seed two points \\(P\\) and \\(Q\\) that are initially in the same tile, then their image by the word \\(W\\) will be very close. Sadly, this means that we need to chose initial points which are in a tile mapped by a word. Choosing random points to apply this transformation too is a bad idea since most of them won't be in those tiles, and in longer word the tiles shrink to nothing. After all we want to plot the _limit set_ of a particular group, i.e what happens when the initial Shottky circles are transformed by long words. With the BFS, we usually do this at each step, but this is fairly slow, and also require the position and radius of all initial circles, which might not be straightforward to obtain using more complicated recipes (or no recipes at all). So, we need a way to have points \\(P\\) which are always in the initial Shottky tiles.
+With the BFS algorithm, what we essentially did was applying a Möbius transform on each of the 4 circles of the initial Schottky array. As it turns out, we don't need to do apply this transform to a specific circle. What we could do, is simply chose a seed point \\(P\\) in the initial Schottky circles, and apply the transform not to the entire circle, but simply to this point, saving us some computations. This also means that if we chose seed two points \\(P\\) and \\(Q\\) that are initially in the same tile, then their image by the word \\(W\\) will be very close. Sadly, this means that we need to chose initial points which are in a tile mapped by a word. Choosing random points to apply this transformation too is a bad idea since most of them won't be in those tiles, and in longer word the tiles shrink to nothing. After all we want to plot the _limit set_ of a particular group, i.e what happens when the initial Schottky circles are transformed by long words. With the BFS, we usually do this at each step, but this is fairly slow, and also require the position and radius of all initial circles, which might not be straightforward to obtain using more complicated recipes (or no recipes at all). So, we need a way to have points \\(P\\) which are always in the initial Schottky tiles.
 
 The answer here is to take advantage of an equivalency between fixed points of generators and limit points. But we first need to know how to deal with those infinite words that we so desperately need to draw limit sets. I'm gonna paraphrase a bit here, so bear with me.
 
@@ -38,19 +56,23 @@ There are a few rules that we'll take advantages when exploring longer and longe
 
 	* If the first and last letter of \\(W\\) are inverses of each other then \\( \text{Fix}^+ (W)\\) is the infinite reduced word made from \\(\hat{W}\\) by making all the necessary cancellations at the join
 
-	* With the necessary cancelations done, \\(V\hat{W} = \text{Fix}^+ (VWV^-1) = V \text{Fix}^+ (W)\\)  = 
+	* With the necessary cancellations done, \\(V\hat{W} = \text{Fix}^+ (VWV^-1) = V \text{Fix}^+ (W)\\)  = 
 
 
 ## Special words for special people
 Alright, we're back in the game, and we know the rules. If we need to plot the point \\(P\\) associated to an infinite word \\(BBBaabAABB...\\), using the first rule we know that \\(P\\) will be close to any limit point whose word also begin with \\(BBBaabAABB...\\) like \\(BBBaabAABB\hat{a}\\). Using the third rule, we also know that \\(BBBaabAABB\hat{a} = BBBaabAABB \text{Fix}^+ (a)\\). And that's it !
 
-Our algorithm will basically explore all reduced words of a maximum length which afterwards consist of simply a repetition of a single letter. Another way to put it is that we're looking at all the possible points which are \\(W(Fix^+ (a),  W(Fix^+ (b), W(Fix^+ (A), W(Fix^+ (B)\\). Chosing a higher maximum word length will let us draw much more points, increasing exponentially, and adding much more details. 
+Our algorithm will basically explore all reduced words of a maximum length which afterwards consist of simply a repetition of a single letter. Another way to put it is that we're looking at all the possible points which are \\(W(Fix^+ (a),  W(Fix^+ (b), W(Fix^+ (A), W(Fix^+ (B)\\). Choosing a higher maximum word length will let us draw much more points, increasing exponentially, and adding much more details. 
+
+But nothing is telling us that those special words cannot be longer than a single symbols. Actually, when we'll take a look at "accidents", which are Apolonius Packing that are related to fractions (and irrationals), those special words can be much longer. Fortunately _Ceendras Pearl_ also include an automated special word generator that also includes them in the exploration process. Yes this took me way too much time.
 
 ## Endpoints Conditions
-So we know _what_ branch to take when exploring. How do we know _when_ to stop ? The first thing that could come to mind is simply stop using a maximum depth level. Once we have reached this depth, immediately come one level up and start again. But we could use another trick. We could stop once the image of a few fixed points are close enough together, let's say under an \\(\vareps\\). Using the BFS algorithm, we used to apply the obtained Mobius Transform onto a circle, and plot this. But we don't have those initial circles anymore, and this operation was fairly expensive. An easy fix to this is to simply draw a point only if the newly obtained point is at a distance smaller than an \\(vareps\\) of the old point. If yes, the newpoint becomes the old point and we start again. The first oldpoint should be the fixed point of the first generator used, so that we can start the show. Drawing a line in this context is trivial: simply connect the old point and the new point if their distance \\(< \vareps\\)
+So we know _what_ branch to take when exploring. How do we know _when_ to stop ? The first thing that could come to mind is simply stop using a maximum depth level. Once we have reached this depth, immediately come one level up and start again. But we could use another trick. We could stop once the image of a few fixed points are close enough together, let's say under an \\(\varepsilon\\). Using the BFS algorithm, we used to apply the obtained Mobius Transform onto a circle, and plot this. But we don't have those initial circles anymore, and this operation was fairly expensive. An easy fix to this is to simply draw a point only if the newly obtained point is at a distance smaller than an \\(varepsilon\\) of the old point. If yes, the new point becomes the old point and we start again. The first old point should be the fixed point of the first generator used, so that we can start the show. Drawing a line in this context is trivial: simply connect the old point and the new point if their distance \\(< \varepsilon\\)
 
-There is actually another way, slightly more complicated.
+This is fine, but it comes with a significant problem: the limit set can be very twisty, and sometimes the distance between the fixed points can be smaller than an \\( \varepsilon\\) leading up to an undesirable early termination. This is where our special words will come to the rescue, and help us create a longer chain to check. 
 
 ## Faster, faster !
-Now this is all fine and dandy, but we're quite slow. Is there anything we could optimise ? The obvious idea would be to parallelize this affair. Turns out it's _fairly_ easy to do. Since we explore branches of the tree, and that this exploration is entirely independant from one another, we can simply 
+Now this is all fine and dandy, but we're quite slow. Is there anything we could optimise ? The obvious idea would be to parallelize this affair. Turns out it's _fairly_ easy to do. Since we explore branches of the tree, and that this exploration is entirely independent from one another, we can simply use multithreading to speed up our exploration. The easiest way would be to use on thread per initial branch: each thread would be responsible for the exploration of every word starting with a specific letter. We end up with a 4x boost in exploration speed, although with a 4x boost in memory, since every array used in the exploration is quadrupled. However, the memory cost of ceendras is actually pretty light, since we are using just a few hundred-elements long complex array. 
+
+The implementation of this idea was actually easier that thinking about it. Since every branch is actually entirely independent, we can just specify the branch to explore by giving it another end condition: usually the program would stop once it has done an entire cycle through the generators, or abAB, but now we just ask it to stop once the first letter would change.
 
