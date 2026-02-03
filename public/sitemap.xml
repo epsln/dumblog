@@ -2,13 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/</loc>
+    <lastmod>2026-02-03T15:54:09+01:00</lastmod>
+  </url><url>
+    <loc>/mortier/mortier/</loc>
+    <lastmod>2026-02-03T15:54:09+01:00</lastmod>
+  </url><url>
+    <loc>/mortier/</loc>
+    <lastmod>2026-02-03T15:54:09+01:00</lastmod>
+  </url><url>
     <loc>/blog/</loc>
     <lastmod>2023-03-13T16:29:08+01:00</lastmod>
   </url><url>
     <loc>/blog/complexbifmap/</loc>
-    <lastmod>2023-03-13T16:29:08+01:00</lastmod>
-  </url><url>
-    <loc>/</loc>
     <lastmod>2023-03-13T16:29:08+01:00</lastmod>
   </url><url>
     <loc>/tags/c/</loc>
