@@ -1,0 +1,51 @@
+.page-with-sidebar {
+  display: flex;
+  gap: 2rem;
+}
+
+.sidebar {
+  width: 220px;
+  padding: 1rem;
+  border-right: 1px solid var(--border-color, #ddd);
+  font-size: 0.9rem;
+}
+
+.aside {
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.sidebar input {
+  width: 100%;
+}
+
+button {
+	  background-color: #880808 
+}
+
+.content {
+  flex: 1;
+}
+
+#svg-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.param {
+  margin-bottom: 1rem;
+}
+
+.param.hidden {
+  display: none;
+}
+
