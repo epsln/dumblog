@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Math, Machine Learning and various ramblings">
+    <meta name="Author" content="epsilon">
+    <meta name="keywords" content="blog math deep learning">
+    <link rel="stylesheet" href=/css/syntax.css>
+    <link rel="stylesheet" href=/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>epsilon dumblog</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+        <a href=/><img src="/avatar.png" alt="avatar"></a>
+        
+    
+
+    <a id="branding" href=/>
+        
+            epsilon dumblog
+        
+    </a>
+    </header>
+
+    <nav>
+        
+            		
+            <a href="/blog/intro/"
+                
+            >
+                <i class="fas fa-user-circle fa-sm"></i>
+                <span>about me</span>
+            </a>
+        
+            		
+            <a href="/blog/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>blog</span>
+            </a>
+        
+            		
+            <a href="/mortier/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>mortier</span>
+            </a>
+        
+            		
+            <a href="/tags"
+                
+            >
+                <i class="fas fa-tags fa-ms"></i>
+                <span>tags</span>
+            </a>
+        
+            		
+            <a href="https://github.com/epsln"
+                
+                    target="_blank"
+                
+            >
+                <i class="fab fa-github fa-ms"></i>
+                <span>github</span>
+            </a>
+        
+            		
+            <a href="/index.xml"
+                
+            >
+                <i class="fas fa-rss fa-ms"></i>
+                <span>RSS</span>
+            </a>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">The Devil&#39;s Staircase</h1>
+    
+      
+    <nav id="TableOfContents"></nav>
+    <p>Today, just a quickie. The Devil&rsquo;s Staircase (or Cantor Function) is a particular &ldquo;pathological&rdquo; function. It grows from 0 to 1 as \(x\) goes from 0 to 1, but it&rsquo;s derivative are 0 almost everywhere. Meaning, that everywhere you zoom, you&rsquo;ll get a flat line. Yet it goes up. Yet it&rsquo;s flat almost everywhere ! Code? <a href="https://github.com/epsln/processingSketches/tree/main/devilStaircase">Here!</a>.</p>
+<p><img src="/devilStaircase/devil.gif" alt="Wow, it even wiggles !"></p>
+<p>Here, we generate the Devil&rsquo;s Staircase using a particular Circle Map</p>
+<p>$$\phi_{n+1} = \phi_n - \frac{K * sin(2 * \pi * phi_n)}{2 * \pi} $$</p>
+<p>Using \(K = 1\) this map converge to the Cantor Function as \(n \rightarrow \infty\). This is why it wiggles a bit.</p>
+<p>For fun, I used varying values of K to see what kind of effects it would have. It tends towards the Cantor Function, then goes all weird.</p>
+<p><img src="/devilStaircase/weird.gif" alt="Weird."></p>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a href="/blog/chaoticlogic/"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a href="/blog/complesplots/"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+
+</div>
+</footer></main>
+    </body>
+    <script src=/js/navbutton.js></script>
+</html>

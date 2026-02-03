@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Math, Machine Learning and various ramblings">
+    <meta name="Author" content="epsilon">
+    <meta name="keywords" content="blog math deep learning">
+    <link rel="stylesheet" href=/css/syntax.css>
+    <link rel="stylesheet" href=/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>epsilon dumblog</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+        <a href=/><img src="/avatar.png" alt="avatar"></a>
+        
+    
+
+    <a id="branding" href=/>
+        
+            epsilon dumblog
+        
+    </a>
+    </header>
+
+    <nav>
+        
+            		
+            <a href="/blog/intro/"
+                
+            >
+                <i class="fas fa-user-circle fa-sm"></i>
+                <span>about me</span>
+            </a>
+        
+            		
+            <a href="/blog/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>blog</span>
+            </a>
+        
+            		
+            <a href="/mortier/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>mortier</span>
+            </a>
+        
+            		
+            <a href="/tags"
+                
+            >
+                <i class="fas fa-tags fa-ms"></i>
+                <span>tags</span>
+            </a>
+        
+            		
+            <a href="https://github.com/epsln"
+                
+                    target="_blank"
+                
+            >
+                <i class="fab fa-github fa-ms"></i>
+                <span>github</span>
+            </a>
+        
+            		
+            <a href="/index.xml"
+                
+            >
+                <i class="fas fa-rss fa-ms"></i>
+                <span>RSS</span>
+            </a>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">Chaos in Logic</h1>
+    
+      
+    <nav id="TableOfContents"></nav>
+    <p>Keeping up with the traditions I&rsquo;ve set-up a few days ago, we&rsquo;re going to talk about chaos. &ldquo;Oh no, yet another boring example of a Henon map ? Maybe with colors this time ? Or just the Lorentz Attractor with some platitudes on the chaos in life itself ?&rdquo;, you may say, snarkily. Well, voices in my head, no, not quite.</p>
+<p>I kinda dig logic as a field. And by &ldquo;dig&rdquo;, I mean looking from afar and vaguely nodding when someones talks to me about consistency of a formal system. A few months ago I fell onto a great paper that talks about a particular kind of paradoxes, and using real valued logic, transform those paradoxes into discrete dynamical systems. Those systems are then shown to have complicated dynamics.</p>
+<p><a href="https://pdfs.semanticscholar.org/c14b/baa0cf8a198c6069eec278eea39ca0490374.pdf">This all sounds kinda complicated until you actually read the paper</a>. Real valued logic is something that is actually fairly straightforward, especially if you&rsquo;ve grappled a bit with Machine Learning. Instead of using binary truth value, like 0 for False and 1 for True, you can use all the reals in between. You can reassure yourself that you&rsquo;re not doing magic by pretending this number just represents how confident you are in an assertion. Paradoxes, such as the liar paradoxes are now function real to real, that takes a confidence level and outputs another. If you keep iterating this operation, <em>tadam</em> you get dynamics.</p>
+<p>The author first uses the &ldquo;Simple Liar&rdquo; as an example, i.e:</p>
+<p>$$P: \text{This Sentence is False}$$</p>
+<p>Using standard logic, starting from the assumption that \(P\) is True, then \(P\) must be False, then True, then&hellip; Or just (1,0,1,0&hellip;). We can model the behavior of the &ldquo;Simple Liar&rdquo; using the following function :</p>
+<p>$$x_{n+1} = 1 - x_n$$</p>
+<p>Analysis will show that this dynamical systems contains a period two fixed point, <em>i.e</em> it never settles on a truth value. This is true for all starting value of \(x \in [0;1]\) (except 0.5): it&rsquo;s an attractive cycle.</p>
+<p>Remind yourself that you don&rsquo;t have to only use 1 and 0: you can use every real in between ! So if you use a &ldquo;confidence level&rdquo; of 0.7 on this proposition, you will get 0.3 as your confidence level on this proposition. Doing this again will create a cycle : \(0.7, 0.3, 0.7&hellip;\). There is a fixed point actually: 0.5. If you &ldquo;ain&rsquo;t so sure it&rsquo;s true, but ain&rsquo;t so sure it isn&rsquo;t&rdquo;, being very precisely &ldquo;so-so&rdquo; on this proposition, then you always get 0.5, because \(1 - 0.5 = 0.5\).</p>
+<p>A variation can be done using two propositions: the Dualist.</p>
+<p>$$X: X\text{ is True to half the extent that } Y \text{ is True}$$
+$$Y: Y\text{ is True to the extent that } X \text{ is False}$$</p>
+<p>Transforming this into function form we get a function mapping \(\mathbb{R}^2\) to  \(\mathbb{R}^2\) (because we have two inputs, X and Y):</p>
+<p>$$x_{n+1} = 1 - abs(0.5 * y_{n+1} - x_{n})$$
+$$y_{n+1} = 1 - abs((1 - x_{n+1}) - y_n)$$</p>
+<p>Now, we can use our traditional tool for looking at those kind of dynamical systems: the standard escape time diagram, from Mandelbrot <em>et al.</em> fame. For all points \(p \in \mathbb{R}^2\), iterate using our function system using \(p\) as a starting point, and color the point based on the number of iterations until it exploded into infinity. Since we don&rsquo;t have the kind of patience to iterate an countably infinite number of time for a uncountably infinite number of points, we&rsquo;ll just do that for every pixel, and iterate something like ten times. Sorry, <strong>all computer scientist are ultra finitists in pratice</strong>.</p>
+<p><img src="/chaoticLogic/dualist.jpg" alt="At least we get good pictures out of all this work !"></p>
+<p>Nice ! Darker shades of gray indicates starting values of \(X, Y\) that diverges very quickly. Whiter pixels indicates values that go into cycles or just converge to some fixed point.</p>
+<p>A variation on this could be.</p>
+<p>$$X: X\text{ is as True as } Y $$
+$$Y: Y\text{ is as True as } X \text{ is False}$$</p>
+<p>One model of this is :
+$$x_{n+1} = 1 - abs(y_{n} - x_{n})$$
+$$y_{n+1} = 1 - abs((1 - x_{n+1}) - y_n)$$</p>
+<p>Applying our escape time method from earlier, we get this beauty:</p>
+<p><img src="/chaoticLogic/dualistChaos.jpg" alt="I know it&amp;rsquo;s not centered, but whatcanido heyyyy"></p>
+<p>So, it turns out that certain paradoxes can be modeled as discrete dynamical systems using real valued logic, that those paradoxes have complex dynamics, and of course, that they make great looking fractals.
+<a href="https://github.com/epsln/processingSketches/tree/main/chaosParadox">The code is available here, as always</a>. But now the link is at the bottom of the page!</p>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a href="/blog/chaosbits/"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a href="/blog/devilstaircase/"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+
+</div>
+</footer></main>
+    </body>
+    <script src=/js/navbutton.js></script>
+</html>

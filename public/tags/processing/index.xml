@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>processing on epsilon dumblog</title>
+    <link>/tags/processing/</link>
+    <description>Recent content in processing on epsilon dumblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Feb 2021 00:04:25 +0100</lastBuildDate><atom:link href="/tags/processing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arnold and its Tongues</title>
+      <link>/blog/tongues/</link>
+      <pubDate>Tue, 16 Feb 2021 00:04:25 +0100</pubDate>
+      
+      <guid>/blog/tongues/</guid>
+      <description>Hi, I&amp;rsquo;m back. I have been working a lot on my Indra&amp;rsquo;s Pearl implementation, available here. I&amp;rsquo;ll write an article about it soon, since it&amp;rsquo;s pretty interesting, but not now. Now we&amp;rsquo;re talking about tongues. Code is available here
+The Arnold Tongue(s) are a particular kind of fractal that arises when we plot the rotation number of a particular circle map. Circle maps are functions from the circle to itself. They are particularly conducive to chaotic motions, and are pretty simple so it&amp;rsquo;s a good start.</description>
+    </item>
+    
+    <item>
+      <title>The Devil&#39;s Staircase</title>
+      <link>/blog/devilstaircase/</link>
+      <pubDate>Mon, 11 Jan 2021 21:27:34 +0100</pubDate>
+      
+      <guid>/blog/devilstaircase/</guid>
+      <description>Today, just a quickie. The Devil&amp;rsquo;s Staircase (or Cantor Function) is a particular &amp;ldquo;pathological&amp;rdquo; function. It grows from 0 to 1 as \(x\) goes from 0 to 1, but it&amp;rsquo;s derivative are 0 almost everywhere. Meaning, that everywhere you zoom, you&amp;rsquo;ll get a flat line. Yet it goes up. Yet it&amp;rsquo;s flat almost everywhere ! Code? Here!.
+Here, we generate the Devil&amp;rsquo;s Staircase using a particular Circle Map
+$$\phi_{n+1} = \phi_n - \frac{K * sin(2 * \pi * phi_n)}{2 * \pi} $$</description>
+    </item>
+    
+    <item>
+      <title>Chaos in Logic</title>
+      <link>/blog/chaoticlogic/</link>
+      <pubDate>Sat, 09 Jan 2021 00:13:28 +0100</pubDate>
+      
+      <guid>/blog/chaoticlogic/</guid>
+      <description>Keeping up with the traditions I&amp;rsquo;ve set-up a few days ago, we&amp;rsquo;re going to talk about chaos. &amp;ldquo;Oh no, yet another boring example of a Henon map ? Maybe with colors this time ? Or just the Lorentz Attractor with some platitudes on the chaos in life itself ?&amp;rdquo;, you may say, snarkily. Well, voices in my head, no, not quite.
+I kinda dig logic as a field. And by &amp;ldquo;dig&amp;rdquo;, I mean looking from afar and vaguely nodding when someones talks to me about consistency of a formal system.</description>
+    </item>
+    
+    <item>
+      <title>Chaos in Bits</title>
+      <link>/blog/chaosbits/</link>
+      <pubDate>Thu, 07 Jan 2021 15:01:47 +0100</pubDate>
+      
+      <guid>/blog/chaosbits/</guid>
+      <description>One of the things I try a lot is to make cool looking images with the least effort on my part. The easiest way to do that is to let the computer do my work. At least, that&amp;rsquo;s the theory; in practice I spend a lot of time tweaking the various functions and tidbits that make the final product. Maybe some day I&amp;rsquo;ll just paint the individual pixel myself, it&amp;rsquo;ll probably be a bit less trouble.</description>
+    </item>
+    
+    <item>
+      <title>Bifurcation Diagrams</title>
+      <link>/blog/biffmap/</link>
+      <pubDate>Tue, 05 Jan 2021 16:49:57 +0100</pubDate>
+      
+      <guid>/blog/biffmap/</guid>
+      <description>This time we&amp;rsquo;re gonna talk about things I know a little bit more about : bifurcation diagrams and iterated functions. The code is available here
+Bifurcation diagrams show the behavior of a function \( f: \mathbb{R} \rightarrow \mathbb{R} \), with a real parameter under iteration. Iteration simply means &amp;ldquo;plugging the output into the input&amp;rdquo;: a feedback if you will. Iterating from a &amp;ldquo;seed&amp;rdquo; \(p\), the function can converge to a value (i.</description>
+    </item>
+    
+    <item>
+      <title>Gaussians Primes</title>
+      <link>/blog/gaussints/</link>
+      <pubDate>Tue, 29 Dec 2020 18:54:18 +0100</pubDate>
+      
+      <guid>/blog/gaussints/</guid>
+      <description>On this second episode of &amp;ldquo;what has Epsilon done for the past years&amp;rdquo;, we&amp;rsquo;re gonna talk about&amp;hellip; Prime Numbers. Code is available here.
+The primes does have this capacity to create some interesting looking things, I&amp;rsquo;ll give them that. The Gaussian integers are simply complex numbers whose real and imaginary part are integers, and whose modulus is prime. If one component of this number p is 0, then p is prime only if the other component is prime and p % 4 = 3.</description>
+    </item>
+    
+    <item>
+      <title>Ulam Spiral</title>
+      <link>/blog/ullam/</link>
+      <pubDate>Mon, 28 Dec 2020 18:38:23 +0100</pubDate>
+      
+      <guid>/blog/ullam/</guid>
+      <description>This post is the first part of an attempt at explaining most of the small animations I have done in the past few years.
+The Ulam Spiral is fairly straight forward: by arranging the integers in a spiral, and only marking the primes, you obtain strange, and frankly cool looking patterns.
+Creating this sort of image is very simple. I simply created a basic loop that construct the spiral, which follows the following pattern: ULDDRRRUUUULLLL&amp;hellip;, assigning an integer to each step and checking if it was prime.</description>
+    </item>
+    
+  </channel>
+</rss>

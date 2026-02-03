@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Math, Machine Learning and various ramblings">
+    <meta name="Author" content="epsilon">
+    <meta name="keywords" content="blog math deep learning">
+    <link rel="stylesheet" href=/css/syntax.css>
+    <link rel="stylesheet" href=/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>epsilon dumblog</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+        <a href=/><img src="/avatar.png" alt="avatar"></a>
+        
+    
+
+    <a id="branding" href=/>
+        
+            epsilon dumblog
+        
+    </a>
+    </header>
+
+    <nav>
+        
+            		
+            <a href="/blog/intro/"
+                
+            >
+                <i class="fas fa-user-circle fa-sm"></i>
+                <span>about me</span>
+            </a>
+        
+            		
+            <a href="/blog/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>blog</span>
+            </a>
+        
+            		
+            <a href="/mortier/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>mortier</span>
+            </a>
+        
+            		
+            <a href="/tags"
+                
+            >
+                <i class="fas fa-tags fa-ms"></i>
+                <span>tags</span>
+            </a>
+        
+            		
+            <a href="https://github.com/epsln"
+                
+                    target="_blank"
+                
+            >
+                <i class="fab fa-github fa-ms"></i>
+                <span>github</span>
+            </a>
+        
+            		
+            <a href="/index.xml"
+                
+            >
+                <i class="fas fa-rss fa-ms"></i>
+                <span>RSS</span>
+            </a>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">Bifurcation Diagrams</h1>
+    
+      
+    <nav id="TableOfContents"></nav>
+    <p>This time we&rsquo;re gonna talk about things I know a little bit more about : bifurcation diagrams and iterated functions. <a href="https://github.com/epsln/processingSketches">The code is available here</a></p>
+<p><img src="/biffmap/bif.gif" alt="A nice wallpaper"></p>
+<p>Bifurcation diagrams show the behavior of a function \( f: \mathbb{R} \rightarrow \mathbb{R} \), with a real parameter under iteration. Iteration simply means &ldquo;plugging the output into the input&rdquo;: a feedback if you will. Iterating from a &ldquo;seed&rdquo; \(p\), the function can converge to a value (i.e. a fixed point), explode into \(\infty \), or go into a cycle. A cycle can have a period, which is the number of iteration you need to do to come back to the original value. In other words, a periodic point \(p\) of period \(k\) is defined as \(f^k(p) = p \), with \(k\) being the smallest integer with which this condition is true. Here, \(f^k\) simply means iterating the function \(k\) times.</p>
+<p>Sometimes, the function will go into an &ldquo;aperiodic cycle&rdquo;, where the function won&rsquo;t come back to a fixed point. This is <em>chaotic</em> behavior. A chaotic orbit will never visit a point which it has already been to.</p>
+<p>Enough chit-chat. In this bifurcation diagram, we see if our function converge to a fixed point, or go into an (a)-periodic orbit. We can iterate whatever function we like (well, not quite; it has to be a real function and have only one real parameter) but usually we show the classic logistic function:</p>
+<p>$$ f_{n+1}(x) = ax(1-x) $$</p>
+<p>Note that this function is actually a second degree polynomial.</p>
+<p>On the \(x\) axis, we vary the parameter \(a\) from 2 to 4, and we iterate the function, starting from a point \(p\). After a fixed number \(k\) of iteration to let the function stabilise itself we start plotting points whose coordinates are now \( (a, f^n(p))\), with \(K &lt; n &lt; M\). And <em>tada</em>, we have a bifurcation diagram.</p>
+<p>We can see the classic <em>Road To Chaos</em>, with period doubling happening quicker and quicker. First,
+\(f\) converge to a fixed point, then it splits into a 2-cycle. Then a 4-cycle, a 8-cycle&hellip; faster and faster. The rate at which those bifurcation occurs is the <em>Feigenbaum \(\delta\)</em> constant. Then chaos, or a big blob of white on the screen.</p>
+<p>This behavior is linked to the number of solution to the equation \(f^k(x) = x\). As \(f\) is a 2nd degree polynomial, and since the iterate of a polynomial is also a polynomial, we will always have \(2^K\) solutions. However, most of them will be in the complex plane. Since our seed is real, we need real solutions. Luckily, as the parameter \(a\) increase, the solutions becomes real for higher and higher iteration number, and our function gradually becomes chaotic.</p>
+<p><img src="/biffmap/biff1080.png" alt="A nice wallpaper"></p>
+<p>Now of course you don&rsquo;t have to use the logistic function. Here&rsquo;s the bifurcation diagram of the &ldquo;Gauss function&rdquo;.</p>
+<p>$$ f_{x+1} = exp[\alpha x_n^2] + \beta $$</p>
+<p>Now we&rsquo;ve tricked out a bit here, since we have two parameters: every frame shows a different value of \(\alpha\), ranging \([4;7]\), and the \( x\) axis is the \( \beta \) parameter in the range \([-1;1]\).</p>
+<p><img src="/biffmap/gauss.gif" alt="Gauss Function"></p>
+<p>This won&rsquo;t be the last time I&rsquo;m gonna talk about bifmaps. There&rsquo;s great stuff to be done in here!</p>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a href="/blog/gaussints/"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a href="/blog/chaosbits/"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+
+</div>
+</footer></main>
+    </body>
+    <script src=/js/navbutton.js></script>
+</html>
